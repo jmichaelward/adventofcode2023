@@ -1,0 +1,13 @@
+{
+    "name": "jmichaelward/adventofcode2023",
+    "description": "Advent of Code 2023 exercises",
+    "require": {
+        "symfony/console": "^7.0"
+    },
+    "authors": [
+        {
+            "name": "Jeremy Ward",
+            "email": "jeremy@jmichaelward.com"
+        }
+    ]
+}
