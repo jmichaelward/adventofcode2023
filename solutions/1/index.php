@@ -73,7 +73,7 @@ foreach (readFileLines($handle) as $line) {
     $sum += getNumericValues($line);
 }
 
-echo $sum . PHP_EOL;
+echo "Question 1 answer: {$sum}" . PHP_EOL;
 
 fclose($handle);
 
