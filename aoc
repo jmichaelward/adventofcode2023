@@ -1,0 +1,16 @@
+#!/usr/bin/php
+<?php
+declare(strict_types=1);
+
+try {
+  if (!is_readable(__DIR__ . '/vendor/autoload.php')) {
+    throw new Error('Please run `composer install` to run this application.');
+  }
+
+  require_once __DIR__ . '/vendor/autoload.php';
+
+  $app = new \Symfony\Component\Console\Application();
+  $app->run();
+} catch (Throwable $error) {
+  exit("{$error->getMessage()}\n");
+}
