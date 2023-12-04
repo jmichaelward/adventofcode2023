@@ -9,6 +9,10 @@ use Throwable;
 
 class One extends Assignment
 {
+    protected $file_handle;
+
+    private string $expression;
+
     public function __construct(
         protected readonly string $input_path
     ) {}
@@ -23,10 +27,10 @@ class One extends Assignment
         }
     }
 
-    private function getNumericValues(string $line, string $expression = '/[0-9]/'): int {
+    private function getNumericValues(string $line): int {
         $firstNumberMatches = [];
 
-        preg_match_all($expression, $line, $firstNumberMatches);
+        preg_match_all($this->expression, $line, $firstNumberMatches);
 
         if (empty($firstNumberMatches[0])) {
             return 0;
@@ -54,6 +58,14 @@ class One extends Assignment
             'eight' => 8,
             'nine' => 9,
         };
+    }
+
+    public function set_file_handler(): void {
+        $this->file_handle = fopen($this->input_path, 'r');
+    }
+
+    public function unset_file_handler(): void {
+        fclose($this->file_handle);
     }
 
     /**
@@ -94,18 +106,21 @@ class One extends Assignment
      *
      * Consider your entire calibration document. What is the sum of all of the calibration values?
      */
-    private function do_part_one(): void {
-        $handle = fopen($this->input_path, 'r');
+    public function calculate_part_one(): int {
+        $this->expression = '/[0-9]/';
+
+        $this->set_file_handler();
 
         $sum = 0;
 
-        foreach ($this->readFileLines($handle) as $line) {
+        foreach ($this->readFileLines($this->file_handle) as $line) {
             $sum += $this->getNumericValues($line);
         }
 
-        echo "Question 1 answer: {$sum}" . PHP_EOL;
+        $this->unset_file_handler();
 
-        fclose($handle);
+        return $sum;
+
     }
 
     /**
@@ -127,23 +142,30 @@ class One extends Assignment
 
     What is the sum of all of the calibration values?
      */
-    private function do_part_two(): void {
-        $handle = fopen($this->input_path, 'r');
+    public function calculate_part_two(): int {
+        $this->expression = '/[0-9]|one|two|three|four|five|six|seven|eight|nine/';
 
-        $question_two_sum = 0;
+        $this->set_file_handler();
 
-        foreach ($this->readFileLines($handle) as $line) {
-            $question_two_sum += $this->getNumericValues($line, '/[0-9]|one|two|three|four|five|six|seven|eight|nine/');;
+        $sum = 0;
+
+        foreach ($this->readFileLines($this->file_handle) as $line) {
+            $sum += $this->getNumericValues($line);
         }
 
-        echo "Question 2 answer: {$question_two_sum}" . PHP_EOL;
+        $this->unset_file_handler();
 
-        fclose($handle);
+        return $sum;
     }
 
+    /**
+     * Run the assignments and output the results.
+     *
+     * @return void
+     */
     public function run(): void
     {
-        $this->do_part_one();
-        $this->do_part_two();
+        echo "Question 1 answer: {$this->calculate_part_one()}" . PHP_EOL;
+        echo "Questiopn 2 answer: {$this->calculate_part_two()}" . PHP_EOL;
     }
 }
