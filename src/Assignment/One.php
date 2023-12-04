@@ -13,10 +13,11 @@ class One extends Assignment
 
     public function __construct(
         protected readonly string $input_path,
-        private string $expression = '',
+        private string            $expression = '',
     ) {}
 
-    private function readFileLines($handle): Generator {
+    private function readFileLines($handle): Generator
+    {
         while (!feof($handle)) {
             try {
                 yield trim(fgets($handle));
@@ -26,7 +27,8 @@ class One extends Assignment
         }
     }
 
-    public function extractNumberFromString(string $line): int {
+    public function extractNumberFromString(string $line): int
+    {
         $firstNumberMatches = [];
 
         preg_match_all($this->expression, $line, $firstNumberMatches);
@@ -38,12 +40,13 @@ class One extends Assignment
         $firstNumber = $this->getNumericString($firstNumberMatches[0][0]);
         $secondNumber = $this->getNumericString(array_pop($firstNumberMatches[0]));
 
-        return (int) "{$firstNumber}{$secondNumber}";
+        return (int)"{$firstNumber}{$secondNumber}";
     }
 
-    private function getNumericString(int|string $number): int {
+    private function getNumericString(int|string $number): int
+    {
         if (is_numeric($number)) {
-            return (int) $number;
+            return (int)$number;
         }
 
         return match (strtolower($number)) {
@@ -60,11 +63,13 @@ class One extends Assignment
         };
     }
 
-    public function set_file_handler(): void {
+    public function set_file_handler(): void
+    {
         $this->file_handle = fopen($this->input_path, 'r');
     }
 
-    public function unset_file_handler(): void {
+    public function unset_file_handler(): void
+    {
         fclose($this->file_handle);
     }
 
@@ -106,7 +111,8 @@ class One extends Assignment
      *
      * Consider your entire calibration document. What is the sum of all of the calibration values?
      */
-    public function calculate_part_one(): int {
+    public function calculate_part_one(): int
+    {
         $this->expression = '/[0-9]/';
 
         $this->set_file_handler();
@@ -119,25 +125,26 @@ class One extends Assignment
     }
 
     /**
-    --- Part Two ---
-
-    Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
-
-    Equipped with this new information, you now need to find the real first and last digit on each line. For example:
-
-    two1nine
-    eightwothree
-    abcone2threexyz
-    xtwone3four
-    4nineeightseven2
-    zoneight234
-    7pqrstsixteen
-
-    In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
-
-    What is the sum of all of the calibration values?
+     * --- Part Two ---
+     *
+     * Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
+     *
+     * Equipped with this new information, you now need to find the real first and last digit on each line. For example:
+     *
+     * two1nine
+     * eightwothree
+     * abcone2threexyz
+     * xtwone3four
+     * 4nineeightseven2
+     * zoneight234
+     * 7pqrstsixteen
+     *
+     * In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
+     *
+     * What is the sum of all of the calibration values?
      */
-    public function calculate_part_two(): int {
+    public function calculate_part_two(): int
+    {
         $this->expression = '/[0-9]|one|two|three|four|five|six|seven|eight|nine/';
 
         $this->set_file_handler();
@@ -154,7 +161,8 @@ class One extends Assignment
      *
      * @return int
      */
-    private function calculate_sum(): int {
+    private function calculate_sum(): int
+    {
         $sum = 0;
 
         foreach ($this->readFileLines($this->file_handle) as $line) {
