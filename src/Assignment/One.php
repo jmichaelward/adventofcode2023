@@ -111,16 +111,11 @@ class One extends Assignment
 
         $this->set_file_handler();
 
-        $sum = 0;
+        $sum = $this->calculate_sum();
 
-        foreach ($this->readFileLines($this->file_handle) as $line) {
-            $sum += $this->extractNumberFromString($line);
-        }
-
-        $this->unset_file_handler();
+        $this->unset_file_handler();;
 
         return $sum;
-
     }
 
     /**
@@ -147,13 +142,24 @@ class One extends Assignment
 
         $this->set_file_handler();
 
+        $sum = $this->calculate_sum();
+
+        $this->unset_file_handler();
+
+        return $sum;
+    }
+
+    /**
+     * Calculate the sum of the numbers from the generated file.
+     *
+     * @return int
+     */
+    private function calculate_sum(): int {
         $sum = 0;
 
         foreach ($this->readFileLines($this->file_handle) as $line) {
             $sum += $this->extractNumberFromString($line);
         }
-
-        $this->unset_file_handler();
 
         return $sum;
     }
