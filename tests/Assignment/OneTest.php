@@ -49,6 +49,26 @@ class OneTest extends TestCase
             ['4fivecl185', 45],
             ['onefk8sdljtfv37zsxsxrv7qvrpnmd', 17],
             ['fourdvhzp7foursix', 46],
+            ['seventwonineseven27jbrqpxfx8', 78],
+            ['1threenine241gnrdfqn5', 15],
+            ['sixnrsqdgmkvs7sevenkgjgtglmdq9dkdzsdqmq2nptbxnxghm', 62],
+            ['llbkdcpxkg1tnmnmrbskpdb', 11],
+            ['zb7nvjz1eighttwo6nine', 79],
+            ['5threeeightwor', 58],
+            ['tgjmdbr4sixone5', 45],
+            ['4twoseven7tjmklbl', 47],
+            ['lt2vqgbkzjpcjzeight3frfzqgbhvlx4', 24],
+            ['4sixseven3xbmsfxrrvv2st5', 45],
+            ['gqlp7', 77],
+            ['h137four', 14],
+            ['3three7three7', 37],
+            ['nine9sjlzcpjvhcnbhbthz4oneb8kfb', 98],
+            ['jlrjz5two', 52],
+            ['sixthreeeightsgnjnmffq3', 63],
+            ['sixone87onepclf3', 63],
+            ['two4six', 26],
+            ['5dsnxrcfxb4', 54],
+            ['fiveninesix4', 54],
         ];
     }
 
@@ -66,9 +86,12 @@ class OneTest extends TestCase
         self::assertSame($expected_result, $test_class->extractNumberFromString($string));
     }
 
-//    public function testPartTwoExtractedGeneratedData() {
-//        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt');
-//
-//        self::assertSame(1933, $test_class->calculate_part_two());
-//    }
+    /**
+     * @covers One::calculate_part_two
+     */
+    public function testPartTwoExtractedGeneratedData() {
+        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt');
+
+        self::assertSame(1973, $test_class->calculate_part_two());
+    }
 }
