@@ -40,6 +40,9 @@ declare(strict_types=1);
  * Consider your entire calibration document. What is the sum of all of the calibration values?
  */
 
+$assignment = new \JMichaelWard\AdventOfCode2023\Assignment\One();
+$assignment->run();
+
 
 function readFileLines($handle): Generator {
     while (!feof($handle)) {
