@@ -51,29 +51,80 @@ function readFileLines($handle): Generator {
     }
 }
 
-function getNumericValues(string $line): int {
-    $expression = '/[0-9]/';
+function getNumericValues(string $line, string $expression = '/[0-9]/'): int {
     $firstNumberMatches = [];
-    $secondNumberMatches = [];
 
-    preg_match($expression, $line, $firstNumberMatches);
-    preg_match($expression, strrev($line), $secondNumberMatches);
+    preg_match_all($expression, $line, $firstNumberMatches);
 
-    $firstNumber = (string) $firstNumberMatches[0];
-    $secondNumber = (string) $secondNumberMatches[0];
+    if (empty($firstNumberMatches[0])) {
+        return 0;
+    }
+
+    $firstNumber = getNumericString($firstNumberMatches[0][0]);
+    $secondNumber = getNumericString(array_pop($firstNumberMatches[0]));
 
     return (int) "{$firstNumber}{$secondNumber}";
 }
 
-$handle = fopen(__DIR__ . '/inputs/1.txt', 'r');
+function getNumericString(int|string $number): int {
+    if (is_numeric($number)) {
+        return (int) $number;
+    }
 
-$sum = 0;
-
-foreach (readFileLines($handle) as $line) {
-    $sum += getNumericValues($line);
+    return match (strtolower($number)) {
+        'one' => 1,
+        'two' => 2,
+        'three' => 3,
+        'four' => 4,
+        'five' => 5,
+        'six' => 6,
+        'seven' => 7,
+        'eight' => 8,
+        'nine' => 9,
+    };
 }
 
-echo "Question 1 answer: {$sum}" . PHP_EOL;
+$handle = fopen(__DIR__ . '/inputs/1.txt', 'r');
+
+$question_one_sum = 0;
+
+foreach (readFileLines($handle) as $line) {
+    $question_one_sum += getNumericValues($line);
+}
+
+echo "Question 1 answer: {$question_one_sum}" . PHP_EOL;
 
 fclose($handle);
 
+
+/**
+--- Part Two ---
+
+Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
+
+Equipped with this new information, you now need to find the real first and last digit on each line. For example:
+
+two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen
+
+In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
+
+What is the sum of all of the calibration values?
+*/
+
+$handle = fopen(__DIR__ . '/inputs/1.txt', 'r');
+
+$question_two_sum = 0;
+
+foreach (readFileLines($handle) as $line) {
+    $question_two_sum += getNumericValues($line, '/[0-9]|one|two|three|four|five|six|seven|eight|nine/');;
+}
+
+echo "Question 2 answer: {$question_two_sum}" . PHP_EOL;
+
+fclose($handle);
