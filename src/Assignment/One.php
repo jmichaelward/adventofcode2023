@@ -11,10 +11,9 @@ class One extends Assignment
 {
     protected $file_handle;
 
-    private string $expression;
-
     public function __construct(
-        protected readonly string $input_path
+        protected readonly string $input_path,
+        private string $expression = '',
     ) {}
 
     private function readFileLines($handle): Generator {
@@ -27,7 +26,7 @@ class One extends Assignment
         }
     }
 
-    private function getNumericValues(string $line): int {
+    public function extractNumberFromString(string $line): int {
         $firstNumberMatches = [];
 
         preg_match_all($this->expression, $line, $firstNumberMatches);
@@ -115,7 +114,7 @@ class One extends Assignment
         $sum = 0;
 
         foreach ($this->readFileLines($this->file_handle) as $line) {
-            $sum += $this->getNumericValues($line);
+            $sum += $this->extractNumberFromString($line);
         }
 
         $this->unset_file_handler();
@@ -151,7 +150,7 @@ class One extends Assignment
         $sum = 0;
 
         foreach ($this->readFileLines($this->file_handle) as $line) {
-            $sum += $this->getNumericValues($line);
+            $sum += $this->extractNumberFromString($line);
         }
 
         $this->unset_file_handler();
