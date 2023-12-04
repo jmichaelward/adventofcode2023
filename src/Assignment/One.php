@@ -29,16 +29,12 @@ class One extends Assignment
 
     public function extractNumberFromString(string $line): int
     {
-        $firstNumberMatches = [];
+        preg_match_all($this->expression, $line, $matches);
 
-        preg_match_all($this->expression, $line, $firstNumberMatches);
+        $numbers = array_values(array_filter($matches[1] ?? $matches[0]));
 
-        if (empty($firstNumberMatches[0])) {
-            return 0;
-        }
-
-        $firstNumber = $this->getNumericString($firstNumberMatches[0][0]);
-        $secondNumber = $this->getNumericString(array_pop($firstNumberMatches[0]));
+        $firstNumber = $this->getNumericString($numbers[0]);
+        $secondNumber = $this->getNumericString(array_pop($numbers));
 
         return (int)"{$firstNumber}{$secondNumber}";
     }
@@ -145,7 +141,7 @@ class One extends Assignment
      */
     public function calculate_part_two(): int
     {
-        $this->expression = '/[0-9]|one|two|three|four|five|six|seven|eight|nine/';
+        $this->expression = '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/';
 
         $this->set_file_handler();
 
@@ -180,6 +176,6 @@ class One extends Assignment
     public function run(): void
     {
         echo "Question 1 answer: {$this->calculate_part_one()}" . PHP_EOL;
-        echo "Questiopn 2 answer: {$this->calculate_part_two()}" . PHP_EOL;
+        echo "Question 2 answer: {$this->calculate_part_two()}" . PHP_EOL;
     }
 }

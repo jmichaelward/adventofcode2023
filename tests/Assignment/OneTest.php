@@ -30,7 +30,7 @@ class OneTest extends TestCase
     public static function getSampleStrings(): array {
         return [
             ['sixrrmlkptmc18zhvninek', 69],
-            ['jcb82eightwond', 88],
+            ['jcb82eightwond', 82],
             ['twofourthree778nineeight', 28],
             ['sqpxs1cgcrmctlgqvzxbcjzgr', 11],
             ['nqkjxbmbpkz9eight8', 98],
@@ -54,7 +54,7 @@ class OneTest extends TestCase
             ['sixnrsqdgmkvs7sevenkgjgtglmdq9dkdzsdqmq2nptbxnxghm', 62],
             ['llbkdcpxkg1tnmnmrbskpdb', 11],
             ['zb7nvjz1eighttwo6nine', 79],
-            ['5threeeightwor', 58],
+            ['5threeeightwor', 52],
             ['tgjmdbr4sixone5', 45],
             ['4twoseven7tjmklbl', 47],
             ['lt2vqgbkzjpcjzeight3frfzqgbhvlx4', 24],
@@ -69,6 +69,7 @@ class OneTest extends TestCase
             ['two4six', 26],
             ['5dsnxrcfxb4', 54],
             ['fiveninesix4', 54],
+            ['eightwo', 82]
         ];
     }
 
@@ -81,7 +82,7 @@ class OneTest extends TestCase
      */
     public function testParsedStringValues(string $string, int $expected_result)
     {
-        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt', '/[0-9]|one|two|three|four|five|six|seven|eight|nine/');
+        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt', '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/');
 
         self::assertSame($expected_result, $test_class->extractNumberFromString($string));
     }
@@ -92,6 +93,6 @@ class OneTest extends TestCase
     public function testPartTwoExtractedGeneratedData() {
         $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt');
 
-        self::assertSame(1973, $test_class->calculate_part_two());
+        self::assertSame(1961, $test_class->calculate_part_two());
     }
 }
