@@ -1,6 +1,6 @@
 <?php
 
-namespace Assignment;
+namespace JMichaelWard\AdventOfCode2023\Tests\Assignment;
 
 use JMichaelWard\AdventOfCode2023\Assignment\One;
 use PHPUnit\Framework\TestCase;

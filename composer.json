@@ -13,7 +13,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "JMichaelWard\\AdventOfCode2023\\": "src/"
+            "JMichaelWard\\AdventOfCode2023\\": "src/",
+            "JMichaelWard\\AdventOfCode2023\\Tests\\": "tests/unit/"
         }
     },
     "require-dev": {
