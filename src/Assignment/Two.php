@@ -90,6 +90,12 @@ class Two extends Assignment
         return $this->getGameId($baseData[0]);
     }
 
+    /**
+     * Get the game ID from a string of text.
+     *
+     * @param string $text
+     * @return int
+     */
     private function getGameId(string $text): int {
         return (int) str_replace('Game ', '', $text);
     }
