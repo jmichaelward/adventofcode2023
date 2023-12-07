@@ -33,6 +33,10 @@ class One extends Assignment
 
         $numbers = array_values(array_filter($matches[1] ?? $matches[0]));
 
+        if (empty($numbers)) {
+            return 0;
+        }
+
         $firstNumber = $this->getNumericString($numbers[0]);
         $secondNumber = $this->getNumericString(array_pop($numbers));
 
