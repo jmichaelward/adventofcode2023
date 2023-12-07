@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace JMichaelWard\AdventOfCode2023\Assignment;
 
 use JMichaelWard\AdventOfCode2023\Assignment;
+use JMichaelWard\AdventOfCode2023\FileInput;
 
 /**
  * --- Day 2: Cube Conundrum ---
@@ -51,8 +52,20 @@ use JMichaelWard\AdventOfCode2023\Assignment;
  */
 class Two extends Assignment
 {
+    use FileInput;
+
+    public function __construct(
+        protected readonly string $input_path
+    ) {}
+
     public function run(): void
     {
-        echo 'Assignment two';
+        $this->setFileHandler();
+
+        foreach ($this->readFileLines() as $line) {
+            echo $line . PHP_EOL;
+        }
+
+        $this->unsetFileHandler();
     }
 }
