@@ -57,7 +57,9 @@ class Two extends Assignment
 
     public function __construct(
         protected readonly string $input_path
-    ) {}
+    )
+    {
+    }
 
     public function run(): void
     {
@@ -85,7 +87,8 @@ class Two extends Assignment
      * @param string $line
      * @return int
      */
-    private function getPossibleGameId(string $line): int {
+    private function getPossibleGameId(string $line): int
+    {
         $baseData = explode(': ', $line);
 
         return $this->getGameId($baseData[0]);
@@ -97,13 +100,14 @@ class Two extends Assignment
      * @param string $text
      * @return int
      */
-    private function getGameId(string $text): int {
+    private function getGameId(string $text): int
+    {
         $id = str_replace('Game ', '', $text);
 
         if (!is_numeric($id)) {
             throw new Exception('ID not found: invalid string format.');
         }
 
-        return (int) $id;
+        return (int)$id;
     }
 }
