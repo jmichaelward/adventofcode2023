@@ -42,7 +42,7 @@ class TwoTest extends TestCase
     /**
      * @covers Two::getPartOneAnswer
      */
-    public function testPartOneExample()
+    public function testPartOneExampleAnswer()
     {
         $test_class = $this->getDefaultTestInstance();
         $method = new \ReflectionMethod($test_class, 'getPartOneAnswer');

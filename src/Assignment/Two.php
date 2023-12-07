@@ -63,7 +63,7 @@ class Two extends Assignment
 
     public function run(): void
     {
-
+        echo "Part 1 answer: {$this->getPartOneAnswer()}" . PHP_EOL;
     }
 
     private function getPartOneAnswer(): int
