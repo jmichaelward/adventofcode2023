@@ -63,20 +63,22 @@ class Two extends Assignment
 
     public function run(): void
     {
+
+    }
+
+    private function getPartOneAnswer(): int
+    {
         $this->setFileHandler();
 
         $sum = 0;
 
-        // Check the dice drawn against the possible values: 12 red, 13 green, 14 blue.
-        // Track the game ID.
-        // Sum the game IDs of possible games.
         foreach ($this->readFileLines() as $line) {
             $sum += $this->getPossibleGameId($line);
         }
 
         $this->unsetFileHandler();
 
-        echo $sum;
+        return $sum;
     }
 
     /**
@@ -89,7 +91,11 @@ class Two extends Assignment
      */
     private function getPossibleGameId(string $line): int
     {
-        [ $gameIdentifier, $gameData ] = explode(': ', $line);
+        if (empty($line)) {
+            return 0;
+        }
+
+        [$gameIdentifier, $gameData] = explode(': ', $line);
 
         return $this->isValidGameData($gameData) ? $this->getGameId($gameIdentifier) : 0;
     }
@@ -111,8 +117,12 @@ class Two extends Assignment
         return (int)$id;
     }
 
-    private function isValidGameData(string $gameData): bool
+    private function isValidGameData(string|null $gameData): bool
     {
+        if (!$gameData) {
+            return false;
+        }
+
         $games = explode('; ', $gameData);
 
         try {

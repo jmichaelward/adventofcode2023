@@ -38,4 +38,15 @@ class TwoTest extends TestCase
 
         self::assertSame(0, $method->invoke($test_class, 'Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red'));
     }
+
+    /**
+     * @covers Two::getPartOneAnswer
+     */
+    public function testPartOneExample()
+    {
+        $test_class = $this->getDefaultTestInstance();
+        $method = new \ReflectionMethod($test_class, 'getPartOneAnswer');
+
+        self::assertSame(8, $method->invoke($test_class));
+    }
 }
