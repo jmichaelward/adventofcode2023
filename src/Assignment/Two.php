@@ -89,9 +89,9 @@ class Two extends Assignment
      */
     private function getPossibleGameId(string $line): int
     {
-        $baseData = explode(': ', $line);
+        [ $gameIdentifier, $gameData ] = explode(': ', $line);
 
-        return $this->getGameId($baseData[0]);
+        return $this->isValidGameData($gameData) ? $this->getGameId($gameIdentifier) : 0;
     }
 
     /**
@@ -109,5 +109,20 @@ class Two extends Assignment
         }
 
         return (int)$id;
+    }
+
+    private function isValidGameData(string $gameData): bool
+    {
+        $games = explode('; ', $gameData);
+
+        try {
+            foreach ($games as $game) {
+                $game = Assignment\Two\Game::createFromData($game);
+            }
+        } catch (\InvalidArgumentException $e) {
+            return false;
+        }
+
+        return true;
     }
 }

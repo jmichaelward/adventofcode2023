@@ -14,7 +14,7 @@ class TwoTest extends TestCase
     }
 
     /**
-     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Two::getPossibleGameId
+     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Two::getGameId
      */
     public function testGameIdIsReturnedFromString()
     {
@@ -26,6 +26,16 @@ class TwoTest extends TestCase
         self::expectException(\Exception::class);
 
         $method->invoke($test_class, 'Invalid text format.');
+    }
 
+    /**
+     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Two::getPossibleGameId
+     */
+    public function testGameIdIsNotPossibleWithInvalidData()
+    {
+        $test_class = $this->getDefaultTestInstance();
+        $method = new \ReflectionMethod($test_class, 'getPossibleGameId');
+
+        self::assertSame(0, $method->invoke($test_class, 'Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red'));
     }
 }
