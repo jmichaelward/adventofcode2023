@@ -62,10 +62,35 @@ class Two extends Assignment
     {
         $this->setFileHandler();
 
+        $sum = 0;
+
+        // Check the dice drawn against the possible values: 12 red, 13 green, 14 blue.
+        // Track the game ID.
+        // Sum the game IDs of possible games.
         foreach ($this->readFileLines() as $line) {
-            echo $line . PHP_EOL;
+            $sum += $this->getPossibleGameId($line);
         }
 
         $this->unsetFileHandler();
+
+        echo $sum;
+    }
+
+    /**
+     * Parse the game text and return the ID if the game was possible.
+     *
+     * Possible games have only 12 red cubes, 13 green cubes, and 14 blue cubes. Return 0 if the game is not possible.
+     *
+     * @param string $line
+     * @return int
+     */
+    private function getPossibleGameId(string $line): int {
+        $baseData = explode(': ', $line);
+
+        return $this->getGameId($baseData[0]);
+    }
+
+    private function getGameId(string $text): int {
+        return (int) str_replace('Game ', '', $text);
     }
 }
