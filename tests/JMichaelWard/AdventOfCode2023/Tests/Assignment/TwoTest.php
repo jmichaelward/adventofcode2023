@@ -20,8 +20,12 @@ class TwoTest extends TestCase
     {
         $test_class = $this->getDefaultTestInstance();
         $method = new \ReflectionMethod($test_class, 'getGameId');
-        $method->setAccessible(true);
 
-        $this->assertSame(1, $method->invoke($test_class, 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green'));
+        self::assertSame(1, $method->invoke($test_class, 'Game 1'));
+
+        self::expectException(\Exception::class);
+
+        $method->invoke($test_class, 'Invalid text format.');
+
     }
 }

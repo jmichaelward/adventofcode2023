@@ -5,6 +5,7 @@ namespace JMichaelWard\AdventOfCode2023\Assignment;
 
 use JMichaelWard\AdventOfCode2023\Assignment;
 use JMichaelWard\AdventOfCode2023\FileInput;
+use Exception;
 
 /**
  * --- Day 2: Cube Conundrum ---
@@ -97,6 +98,12 @@ class Two extends Assignment
      * @return int
      */
     private function getGameId(string $text): int {
-        return (int) str_replace('Game ', '', $text);
+        $id = str_replace('Game ', '', $text);
+
+        if (!is_numeric($id)) {
+            throw new Exception('ID not found: invalid string format.');
+        }
+
+        return (int) $id;
     }
 }
