@@ -95,11 +95,11 @@ class One extends Assignment
     {
         $this->expression = '/[0-9]/';
 
-        $this->set_file_handler();
+        $this->setFileHandler();
 
         $sum = $this->calculate_sum();
 
-        $this->unset_file_handler();;
+        $this->unsetFileHandler();;
 
         return $sum;
     }
@@ -127,11 +127,11 @@ class One extends Assignment
     {
         $this->expression = '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/';
 
-        $this->set_file_handler();
+        $this->setFileHandler();
 
         $sum = $this->calculate_sum();
 
-        $this->unset_file_handler();
+        $this->unsetFileHandler();
 
         return $sum;
     }

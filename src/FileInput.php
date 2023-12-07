@@ -20,12 +20,12 @@ trait FileInput
         }
     }
 
-    protected function set_file_handler(): void
+    protected function setFileHandler(): void
     {
         $this->file_handle = fopen($this->input_path, 'r');
     }
 
-    protected function unset_file_handler(): void
+    protected function unsetFileHandler(): void
     {
         fclose($this->file_handle);
     }
