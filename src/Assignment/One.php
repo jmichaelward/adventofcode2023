@@ -5,27 +5,17 @@ namespace JMichaelWard\AdventOfCode2023\Assignment;
 
 use JMichaelWard\AdventOfCode2023\Assignment;
 use Generator;
+use JMichaelWard\AdventOfCode2023\FileInput;
 use Throwable;
 
 class One extends Assignment
 {
-    protected $file_handle;
+    use FileInput;
 
     public function __construct(
         protected readonly string $input_path,
         private string            $expression = '',
     ) {}
-
-    private function readFileLines($handle): Generator
-    {
-        while (!feof($handle)) {
-            try {
-                yield trim(fgets($handle));
-            } catch (Throwable $e) {
-                continue;
-            }
-        }
-    }
 
     public function extractNumberFromString(string $line): int
     {
@@ -61,16 +51,6 @@ class One extends Assignment
             'eight' => 8,
             'nine' => 9,
         };
-    }
-
-    public function set_file_handler(): void
-    {
-        $this->file_handle = fopen($this->input_path, 'r');
-    }
-
-    public function unset_file_handler(): void
-    {
-        fclose($this->file_handle);
     }
 
     /**
