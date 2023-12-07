@@ -21,6 +21,7 @@ class Two extends Assignment
     public function run(): void
     {
         echo "Part 1 answer: {$this->getPartOneAnswer()}" . PHP_EOL;
+        echo "Part 2 answer: {$this->getPartTwoAnswer()}" . PHP_EOL;
     }
 
     /**
@@ -106,10 +107,20 @@ class Two extends Assignment
      * The power of a set of cubes is equal to the numbers of red, green, and blue cubes multiplied together. The power of the minimum set of cubes in game 1 is 48. In games 2-5 it was 12, 1560, 630, and 36, respectively. Adding up these five powers produces the sum 2286.
      *
      * For each game, find the minimum set of cubes that must have been present. What is the sum of the power of these sets?
- */
+     */
     private function getPartTwoAnswer(): int
     {
+        $this->setFileHandler();
 
+        $sum = 0;
+
+        foreach ($this->readFileLines() as $line) {
+            $sum += $this->getGamePower($line);
+        }
+
+        $this->unsetFileHandler();
+
+        return $sum;
     }
 
 
@@ -149,12 +160,8 @@ class Two extends Assignment
         return (int)$id;
     }
 
-    private function isValidGameData(string|null $gameData): bool
+    private function isValidGameData(string $gameData): bool
     {
-        if (!$gameData) {
-            return false;
-        }
-
         $games = explode('; ', $gameData);
 
         try {
@@ -170,5 +177,30 @@ class Two extends Assignment
         }
 
         return true;
+    }
+
+    private function getGamePower(string $line): int
+    {
+        if (empty($line)) {
+            return 0;
+        }
+
+        [$gameIdentifier, $gameData] = explode(': ', $line);
+
+        $gamesData = explode('; ', $gameData);
+        $highest = [
+            'red' => [],
+            'green' => [],
+            'blue' => []
+        ];
+
+        foreach ($gamesData as $gameDatum) {
+            $game = Assignment\Two\Game::createFromData($gameDatum);
+            $highest['red'][] = $game->getRed();
+            $highest['green'][] = $game->getGreen();
+            $highest['blue'][] = $game->getBlue();
+        }
+
+        return max($highest['red']) * max($highest['green']) * max($highest['blue']);
     }
 }

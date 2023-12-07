@@ -49,4 +49,26 @@ class TwoTest extends TestCase
 
         self::assertSame(8, $method->invoke($test_class));
     }
+
+    /**
+     * @covers Two::getGamePower
+     */
+    public function testGetGamePowerExample()
+    {
+        $test_class = $this->getDefaultTestInstance();
+        $method = new \ReflectionMethod($test_class, 'getGamePower');
+
+        self::assertSame(48, $method->invoke($test_class, 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green'));
+    }
+
+    /**
+     * @covers Two::getPartTwoAnswer
+     */
+    public function testGetGamePowerSumExample()
+    {
+        $test_class = $this->getDefaultTestInstance();
+        $method = new \ReflectionMethod($test_class, 'getPartTwoAnswer');
+
+        self::assertSame(2286, $method->invoke($test_class));
+    }
 }
