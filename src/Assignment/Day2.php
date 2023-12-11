@@ -8,7 +8,7 @@ use JMichaelWard\AdventOfCode2023\FileInput;
 use Exception;
 
 
-class Two extends Assignment
+class Day2 extends Assignment
 {
     use FileInput;
 

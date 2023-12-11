@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace JMichaelWard\AdventOfCode2023\Tests\Assignment;
 
-use JMichaelWard\AdventOfCode2023\Assignment\Two;
+use JMichaelWard\AdventOfCode2023\Assignment\Day2;
 use PHPUnit\Framework\TestCase;
 
-class TwoTest extends TestCase
+class Day2Test extends TestCase
 {
-    private function getDefaultTestInstance(): Two
+    private function getDefaultTestInstance(): Day2
     {
-        return new Two(TEST_DATA_ROOT . '/2-1.txt');
+        return new Day2(TEST_DATA_ROOT . '/2-1.txt');
     }
 
     /**
-     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Two::getGameId
+     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Day2::getGameId
      */
     public function testGameIdIsReturnedFromString()
     {
@@ -29,7 +29,7 @@ class TwoTest extends TestCase
     }
 
     /**
-     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Two::getPossibleGameId
+     * @covers \JMichaelWard\AdventOfCode2023\Assignment\Day2::getPossibleGameId
      */
     public function testGameIdIsNotPossibleWithInvalidData()
     {
@@ -40,7 +40,7 @@ class TwoTest extends TestCase
     }
 
     /**
-     * @covers Two::getPartOneAnswer
+     * @covers Day2::getPartOneAnswer
      */
     public function testPartOneExampleAnswer()
     {
@@ -51,7 +51,7 @@ class TwoTest extends TestCase
     }
 
     /**
-     * @covers Two::getGamePower
+     * @covers Day2::getGamePower
      */
     public function testGetGamePowerExample()
     {
@@ -62,7 +62,7 @@ class TwoTest extends TestCase
     }
 
     /**
-     * @covers Two::getPartTwoAnswer
+     * @covers Day2::getPartTwoAnswer
      */
     public function testGetGamePowerSumExample()
     {
