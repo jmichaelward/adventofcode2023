@@ -11,7 +11,14 @@ abstract class Assignment
         protected readonly string $input_path
     ) {}
 
-    abstract public function run(): void;
+    public function run(): void
+    {
+        echo 'Answers for ' . get_called_class() . PHP_EOL;
+
+        echo "Part 1: {$this->getPartOneAnswer()}" . PHP_EOL;
+        echo "Part 2: {$this->getPartTwoAnswer()}" . PHP_EOL;
+    }
+
 
     abstract public function getPartOneAnswer();
 

@@ -99,7 +99,7 @@ class Day1 extends Assignment
 
         $sum = $this->calculate_sum();
 
-        $this->unsetFileHandler();;
+        $this->unsetFileHandler();
 
         return $sum;
     }

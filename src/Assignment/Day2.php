@@ -18,12 +18,6 @@ class Day2 extends Assignment
     {
     }
 
-    public function run(): void
-    {
-        echo "Part 1 answer: {$this->getPartOneAnswer()}" . PHP_EOL;
-        echo "Part 2 answer: {$this->getPartTwoAnswer()}" . PHP_EOL;
-    }
-
     /**
      * --- Day 2: Cube Conundrum ---
      *

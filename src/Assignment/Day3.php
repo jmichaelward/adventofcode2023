@@ -14,4 +14,14 @@ class Day3 extends Assignment
     {
         echo 'Assignment 3 is running!' . PHP_EOL;
     }
+
+    public function getPartOneAnswer()
+    {
+        // TODO: Implement getPartOneAnswer() method.
+    }
+
+    public function getPartTwoAnswer()
+    {
+        // TODO: Implement getPartTwoAnswer() method.
+    }
 }
