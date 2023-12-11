@@ -91,7 +91,7 @@ class Day1 extends Assignment
      *
      * Consider your entire calibration document. What is the sum of all of the calibration values?
      */
-    public function calculate_part_one(): int
+    public function getPartOneAnswer(): int
     {
         $this->expression = '/[0-9]/';
 
@@ -123,7 +123,7 @@ class Day1 extends Assignment
      *
      * What is the sum of all of the calibration values?
      */
-    public function calculate_part_two(): int
+    public function getPartTwoAnswer(): int
     {
         $this->expression = '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/';
 
@@ -159,7 +159,7 @@ class Day1 extends Assignment
      */
     public function run(): void
     {
-        echo "Question 1 answer: {$this->calculate_part_one()}" . PHP_EOL;
-        echo "Question 2 answer: {$this->calculate_part_two()}" . PHP_EOL;
+        echo "Question 1 answer: {$this->getPartOneAnswer()}" . PHP_EOL;
+        echo "Question 2 answer: {$this->getPartTwoAnswer()}" . PHP_EOL;
     }
 }

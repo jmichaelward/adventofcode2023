@@ -8,23 +8,23 @@ use PHPUnit\Framework\TestCase;
 class Day1Test extends TestCase
 {
     /**
-     * @covers Day1::calculate_part_one
+     * @covers Day1::getPartOneAnswer
      */
     public function testPartOneSampleData()
     {
         $test_class = new Day1(TEST_DATA_ROOT . '/1-1.txt');
 
-        self::assertSame(142, $test_class->calculate_part_one());
+        self::assertSame(142, $test_class->getPartOneAnswer());
     }
 
     /**
-     * @covers Day1::calculate_part_two
+     * @covers Day1::getPartTwoAnswer
      */
     public function testPartTwoSampleData()
     {
         $test_class = new Day1(TEST_DATA_ROOT . '/1-2.txt');
 
-        self::assertSame(281, $test_class->calculate_part_two());
+        self::assertSame(281, $test_class->getPartTwoAnswer());
     }
 
     public static function getSampleStrings(): array {
@@ -88,11 +88,11 @@ class Day1Test extends TestCase
     }
 
     /**
-     * @covers Day1::calculate_part_two
+     * @covers Day1::getPartTwoAnswer
      */
     public function testPartTwoExtractedGeneratedData() {
         $test_class = new Day1(TEST_DATA_ROOT . '/1-2-generated.txt');
 
-        self::assertSame(1961, $test_class->calculate_part_two());
+        self::assertSame(1961, $test_class->getPartTwoAnswer());
     }
 }
