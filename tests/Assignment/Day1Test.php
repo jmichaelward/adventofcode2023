@@ -2,27 +2,27 @@
 
 namespace JMichaelWard\AdventOfCode2023\Tests\Assignment;
 
-use JMichaelWard\AdventOfCode2023\Assignment\One;
+use JMichaelWard\AdventOfCode2023\Assignment\Day1;
 use PHPUnit\Framework\TestCase;
 
-class OneTest extends TestCase
+class Day1Test extends TestCase
 {
     /**
-     * @covers One::calculate_part_one
+     * @covers Day1::calculate_part_one
      */
     public function testPartOneSampleData()
     {
-        $test_class = new One(TEST_DATA_ROOT . '/1-1.txt');
+        $test_class = new Day1(TEST_DATA_ROOT . '/1-1.txt');
 
         self::assertSame(142, $test_class->calculate_part_one());
     }
 
     /**
-     * @covers One::calculate_part_two
+     * @covers Day1::calculate_part_two
      */
     public function testPartTwoSampleData()
     {
-        $test_class = new One(TEST_DATA_ROOT . '/1-2.txt');
+        $test_class = new Day1(TEST_DATA_ROOT . '/1-2.txt');
 
         self::assertSame(281, $test_class->calculate_part_two());
     }
@@ -75,23 +75,23 @@ class OneTest extends TestCase
 
     /**
      * @dataProvider getSampleStrings
-     * @covers One::extractNumberFromString
+     * @covers Day1::extractNumberFromString
      * @param string $string
      * @param int $expected_result
      * @return void
      */
     public function testParsedStringValues(string $string, int $expected_result)
     {
-        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt', '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/');
+        $test_class = new Day1(TEST_DATA_ROOT . '/1-2-generated.txt', '/(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))/');
 
         self::assertSame($expected_result, $test_class->extractNumberFromString($string));
     }
 
     /**
-     * @covers One::calculate_part_two
+     * @covers Day1::calculate_part_two
      */
     public function testPartTwoExtractedGeneratedData() {
-        $test_class = new One(TEST_DATA_ROOT . '/1-2-generated.txt');
+        $test_class = new Day1(TEST_DATA_ROOT . '/1-2-generated.txt');
 
         self::assertSame(1961, $test_class->calculate_part_two());
     }

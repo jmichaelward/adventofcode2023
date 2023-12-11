@@ -8,7 +8,7 @@ use Generator;
 use JMichaelWard\AdventOfCode2023\FileInput;
 use Throwable;
 
-class One extends Assignment
+class Day1 extends Assignment
 {
     use FileInput;
 
